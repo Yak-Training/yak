@@ -5,6 +5,8 @@ import hero from '../public/hero.jpg';
 import Button from '../components/Button';
 import Head from '../components/Head';
 import Diensten from '../components/Diensten';
+import Teaser from '../components/Teaser';
+import AboutUs from '../components/AboutUs';
 
 export default function Home() {
   return (
@@ -32,6 +34,8 @@ export default function Home() {
         description="Creating sustainable engagement"
       />
       <Diensten />
+      <Teaser />
+      <AboutUs />
     </Layout>
   );
 }

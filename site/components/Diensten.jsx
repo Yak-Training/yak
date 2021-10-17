@@ -22,7 +22,6 @@ const Title = styled(Typography)`
 const Subtitle = styled(Typography)`
     text-align: center;
     margin: 0 auto 72px;
-    max-width: 50%;
 `;
 
 const RelativeContainer = styled.div`
@@ -40,7 +39,8 @@ const Diensten = () => (
       <MaxWidth>
         <Title variant="h4" color="primary">Wat bieden wij aan?</Title>
         <Subtitle variant="body1">
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consequat.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum consequat.
         </Subtitle>
         <Grid
           container

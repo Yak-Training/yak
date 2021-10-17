@@ -7,8 +7,8 @@ const typeFaces = {
 
 const colors = {
   primary: {
-    main: '#219653',
-    background: '#ebefed',
+    main: '#1F7358',
+    background: '#F4FAF8',
   },
   common: {
     black: '#18191A',
@@ -27,22 +27,27 @@ const theme = createTheme({
     h1: {
       fontFamily: typeFaces.secondary,
       fontWeight: 900,
+      letterSpacing: '-1px',
     },
     h2: {
       fontFamily: typeFaces.secondary,
       fontWeight: 900,
+      letterSpacing: '-1px',
     },
     h3: {
       fontFamily: typeFaces.secondary,
       fontWeight: 900,
+      letterSpacing: '-1px',
     },
     h4: {
       fontFamily: typeFaces.secondary,
       fontWeight: 900,
+      letterSpacing: '-1px',
     },
     h5: {
       fontFamily: typeFaces.secondary,
       fontWeight: 900,
+      letterSpacing: '-1px',
     },
     h6: {
       fontFamily: typeFaces.secondary,

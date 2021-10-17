@@ -20,14 +20,15 @@ const StyledTypography = styled(Typography)`
 
 export const HeroTypography = styled(Typography)`
   && {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
+    letter-spacing: -1px;
 
     @media (min-width: 600px) {
-      font-size: 1.8rem;
+      font-size: 2.5rem;
     }
 
     @media (min-width: 720px) {
-      font-size: 3rem;
+      font-size: 4rem;
     }
   }
 `;
@@ -75,7 +76,7 @@ const HeroContainer = styled.div`
 const HeroText = styled.div`
   position: absolute;
   z-index: 15;
-  max-width: 600px;
+  max-width: 1024px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
