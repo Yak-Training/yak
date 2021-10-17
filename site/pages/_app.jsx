@@ -16,12 +16,11 @@ const MyApp = ({ Component, props }) => (
 );
 
 MyApp.propTypes = {
-  Component: PropTypes.node,
+  Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
   props: PropTypes.shape({}),
 };
 
 MyApp.defaultProps = {
-  Component: null,
   props: null,
 };
 
