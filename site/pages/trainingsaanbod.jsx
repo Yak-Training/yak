@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Head from '../components/Head';
 import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
@@ -30,6 +31,14 @@ export default function TraingsAanbod() {
       )}
       >
         <h1>Training en Events</h1>
+        <Link
+          href={{
+            pathname: '/event/[slug]',
+            query: { slug: 'my-event' },
+          }}
+        >
+          <a>Event 1</a>
+        </Link>
       </Layout>
     </>
   );

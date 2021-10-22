@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Head from '../components/Head';
 import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
@@ -30,6 +31,14 @@ export default function Blog() {
       )}
       >
         <h1>blog</h1>
+        <Link
+          href={{
+            pathname: '/blog/[post]',
+            query: { post: 'my-post' },
+          }}
+        >
+          <a>post 1</a>
+        </Link>
       </Layout>
     </>
   );
