@@ -10,7 +10,7 @@ const TeaserBackground = styled.div`
 
 const Teaser = () => (
   <TeaserBackground>
-    <Typography color="white" component="h2" variant="h6">Stap veilig buiten je comfortzone om zo te ontwikkelen als individu én als groep</Typography>
+    <Typography color="white" component="h2" variant="h5">Stap veilig buiten je comfortzone om zo te ontwikkelen als individu én als groep</Typography>
   </TeaserBackground>
 );
 
