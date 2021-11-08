@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Button from './Button';
-import logo from '../public/logo.svg';
 import Typography from './Typography';
 
 const Container = styled.footer`
   display: block;
-  padding: 0 16px;
+  padding: 32px 16px;
 
   @media(min-width: 600px) {
-    padding: 0 24px;
+    padding: 48px 24px;
   }
   
   @media(min-width: 1024px) {
@@ -47,20 +45,10 @@ const LegalDescription = styled(Typography)`
     display: flex;
     max-width: 840px;
     justify-content: center;
-    margin: 0 auto;
+    margin: 0 auto 32px;
 
     span {
       margin: 0 24px;
-    }
-  }
-`;
-
-const Logo = styled.div`
-  &&& {
-    margin: 0 auto;
-
-    @media(min-width: 1024px) {
-      margin: 0;
     }
   }
 `;
@@ -107,14 +95,6 @@ const Footer = ({ links }) => (
       </TextContainer>
     </FooterBanner>
     <Container>
-      <Logo>
-        <Image
-          width={100}
-          height={100}
-          src={logo}
-          alt="Yak"
-        />
-      </Logo>
       <FooterToolbar>
         {links}
       </FooterToolbar>

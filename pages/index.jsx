@@ -22,9 +22,8 @@ export default function Home() {
         <Image
           alt="Mountains"
           src={hero}
-          layout="responsive"
-          width={829}
-          height={358}
+          layout="fill"
+          objectFit="cover"
           placeholder="blur"
         />
       )}

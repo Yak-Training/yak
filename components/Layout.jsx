@@ -12,20 +12,19 @@ const StyledAnchor = styled.a`
 
 const StyledTypography = styled(Typography)`
   padding: 12px 0;
+  color: ${(props) => (props.theme.palette.common.black)};
 
   @media (min-width: 1024px) {
     padding: 0 24px;
+    color: ${(props) => (props.color === 'white' ? props.theme.palette.common.white : props.theme.palette.common.black)};
   }
 `;
 
 export const HeroTypography = styled(Typography)`
   && {
-    font-size: 1.8rem;
+    text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
+    font-size: 3rem;
     letter-spacing: -1px;
-
-    @media (min-width: 600px) {
-      font-size: 2.5rem;
-    }
 
     @media (min-width: 720px) {
       font-size: 4rem;
@@ -41,35 +40,19 @@ const Container = styled.main`
   }
 `;
 
-const Overlay = styled.div`
-  background-color: ${(props) => props.theme.palette.primary.main};
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-  opacity: 20%;
-`;
-
 const HeroContainer = styled.div`
   position: relative;
+  width: 100vw;
+  height: 60vh;
 
-  &&& {
-    img {
-      filter: grayscale(100%) !important;
-    }
-  }
-
-  @media(min-width: 720px) {
-    ${(props) => props.maxHeight && `
-      max-height: 250px;
-      overflow: hidden;
-
-      &&& {
-        img {
-          margin-top: -300px !important;
-        }
-      }
-    `}
+  @media(min-width: 1024px) {
+    ${(props) => (props.maxHeight ? `
+      width: 100vw;
+      height: 50vh;`
+    : ` 
+    width: 100vw; 
+    height: 100vh;`
+  )}
   }
 `;
 
@@ -115,6 +98,10 @@ const links = [
     name: 'Partners',
     href: '/partners',
   },
+  {
+    name: 'Contact',
+    href: '/contact',
+  },
 ];
 
 const Layout = ({
@@ -127,7 +114,7 @@ const Layout = ({
         return (
           <Link href={href} passHref key={href}>
             <StyledAnchor>
-              <StyledTypography variant="subtitle2">
+              <StyledTypography color="white" variant="subtitle2">
                 {name}
               </StyledTypography>
             </StyledAnchor>
@@ -136,7 +123,6 @@ const Layout = ({
       })}
     />
     <HeroContainer maxHeight={maxHeight}>
-      <Overlay />
       <HeroText>
         {heroText}
         {button}

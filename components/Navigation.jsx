@@ -36,6 +36,7 @@ const StyledAppBar = styled(AppBar)`
     flex-direction: row;
     box-shadow: none;
     padding: 0 16px;
+    background-color: transparent;
 
     @media (min-width: 600px) {
       padding: 0 0 0 24px;
@@ -60,17 +61,19 @@ const Navigation = ({ links }) => {
   const handleClose = () => setOpen(false);
 
   return (
-    <StyledAppBar position="static">
+    <StyledAppBar position="absolute">
       <StyledIconButton
         onClick={handleDrawer}
         color="inherit"
+        size="small"
+        disableRipple
       >
-        <MenuIcon color="primary" />
+        <MenuIcon color="white" />
       </StyledIconButton>
       <Logo>
         <Image
-          width={100}
-          height={100}
+          width={125}
+          height={125}
           src={logo}
           alt="Yak"
         />

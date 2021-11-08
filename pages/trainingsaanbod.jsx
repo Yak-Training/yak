@@ -1,9 +1,11 @@
 import React from 'react';
+import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Link from 'next/link';
 import Card from '../components/Card';
 import events from '../data/events';
 import Head from '../components/Head';
+import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
 
 export default function TraingsAanbod() {
@@ -14,6 +16,16 @@ export default function TraingsAanbod() {
         description="Yak Training en Events"
       />
       <Layout
+        maxHeight
+        heroImage={(
+          <Image
+            alt="Aanpak"
+            src={aanpak}
+            layout="fill"
+            objectFit="cover"
+            placeholder="blur"
+          />
+    )}
         heroText={(
           <HeroTypography variant="h3" color="white">
             Training en Events

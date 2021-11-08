@@ -10,9 +10,8 @@ const Event = () => (
       <Image
         alt="Aanpak"
         src={aanpak}
-        layout="responsive"
-        width={6000}
-        height={4000}
+        layout="fill"
+        objectFit="cover"
         placeholder="blur"
       />
 )}

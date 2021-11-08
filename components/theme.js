@@ -47,7 +47,6 @@ const theme = createTheme({
     h5: {
       fontFamily: typeFaces.secondary,
       fontWeight: 900,
-      letterSpacing: '-1px',
     },
     h6: {
       fontFamily: typeFaces.secondary,
