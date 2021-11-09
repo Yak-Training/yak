@@ -47,9 +47,11 @@ const StyledAppBar = styled(AppBar)`
 const Logo = styled.div`
   &&& {
     margin: 0 auto;
+    padding-right: 32px;
 
     @media(min-width: 1024px) {
       margin: 0;
+      padding-right: 0;
     }
   }
 `;

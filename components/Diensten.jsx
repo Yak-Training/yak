@@ -49,13 +49,13 @@ const Diensten = () => (
           alignItems="center"
           spacing={5}
         >
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card />
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card />
           </Grid>
-          <Grid item xs={12} sm={12} md={4}>
+          <Grid item xs={12} sm={4} md={4}>
             <Card />
           </Grid>
         </Grid>

@@ -15,17 +15,23 @@ const CardDescription = styled(Typography)`
   -webkit-box-orient: vertical;
 `;
 
+const ImageContainer = styled.div`
+  position: relative;
+  padding-bottom: 66.67%;
+`;
+
 export default function MediaCard({ title, description, image }) {
   return (
     <Card>
-      <Image
-        alt="Mountains"
-        src={image}
-        layout="responsive"
-        width={3}
-        height={2}
-        placeholder="blur"
-      />
+      <ImageContainer>
+        <Image
+          alt="Mountains"
+          src={image}
+          layout="fill"
+          objectFit="cover"
+          placeholder="blur"
+        />
+      </ImageContainer>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
           {title}

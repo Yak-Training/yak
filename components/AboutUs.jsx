@@ -2,8 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import Link from 'next/link';
-import Card from './Card';
+import AvatarListItem from './List/AvatarListItem';
 import team from '../data/team';
 
 const MaxWidth = styled.div`
@@ -27,7 +26,7 @@ const Description = styled(Typography)`
 `;
 
 const Background = styled.div`
-  background-color: ${(props) => props.theme.palette.primary.background};
+  background-color: ${(props) => props.theme.palette.common.white};
 `;
 
 const AboutUs = () => (
@@ -47,8 +46,8 @@ const AboutUs = () => (
             name, description, image,
           } = person;
           return (
-            <Grid item xs={12} sm={12} md={4}>
-              <Card
+            <Grid item xs={12} sm={6} md={6}>
+              <AvatarListItem
                 title={name}
                 description={description}
                 image={image}

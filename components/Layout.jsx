@@ -23,10 +23,14 @@ const StyledTypography = styled(Typography)`
 export const HeroTypography = styled(Typography)`
   && {
     text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
-    font-size: 3rem;
+    font-size: 2rem;
     letter-spacing: -1px;
 
-    @media (min-width: 720px) {
+    @media (min-width: 600px) {
+      font-size: 2.5rem;
+    }
+
+    @media (min-width: 1024px) {
       font-size: 4rem;
     }
   }
