@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import AvatarListItem from './List/AvatarListItem';
+import TeamMember from './List/TeamMember';
 import team from '../data/team';
 
 const MaxWidth = styled.div`
@@ -47,7 +47,7 @@ const AboutUs = () => (
           } = person;
           return (
             <Grid item xs={12} sm={6} md={6}>
-              <AvatarListItem
+              <TeamMember
                 title={name}
                 description={description}
                 image={image}

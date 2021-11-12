@@ -1,14 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 
 const Container = styled.div`
     padding: 24px 32px;
-    background-color: #f6f7ff;
+    background-color: ${(props) => props.theme.palette.primary.background};;
 `;
 const RowContainer = styled.div`
     display: flex;
@@ -30,7 +28,7 @@ const Title = styled(Typography)`
     margin-left: 24px;
 `;
 
-export default function TeamMember({ title, description, image }) {
+function TeamMember({ title, description, image }) {
   return (
     <Container>
       <RowContainer>
@@ -58,3 +56,17 @@ export default function TeamMember({ title, description, image }) {
     </Container>
   );
 }
+
+TeamMember.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.shape({}),
+};
+
+TeamMember.defaultProps = {
+  title: null,
+  description: null,
+  image: null,
+};
+
+export default TeamMember;
