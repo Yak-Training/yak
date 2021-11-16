@@ -1,5 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  useQuery,
+  gql,
+} from '@apollo/client';
 import Layout, { HeroTypography } from '../components/Layout';
 import hero from '../public/hero.jpg';
 import Button from '../components/Button';
@@ -8,7 +15,12 @@ import Diensten from '../components/Diensten';
 import Teaser from '../components/Teaser';
 import AboutUs from '../components/AboutUs';
 
-export default function Home() {
+const client = new ApolloClient({
+  uri: 'https://api-eu-central-1.graphcms.com/v2/ckv72x2ho50t801xl47jpflk2/master',
+  cache: new InMemoryCache(),
+});
+
+export default function Home({ teams }) {
   return (
     <Layout
       noPadding
@@ -37,4 +49,24 @@ export default function Home() {
       <AboutUs />
     </Layout>
   );
+}
+
+export async function getStaticProps() {
+  const { data: teams } = await client.query({
+    query: gql`
+    query teamsQuery {
+    teams {
+      name
+      bio {
+        html
+      }
+    }
+  }`,
+  });
+  console.log(teams);
+  return {
+    props: {
+      teams,
+    },
+  };
 }
