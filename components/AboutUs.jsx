@@ -29,7 +29,7 @@ const Background = styled.div`
   background-color: ${(props) => props.theme.palette.common.white};
 `;
 
-const AboutUs = () => (
+const AboutUs = ({ teams }) => (
   <Background>
     <MaxWidth>
       <Title variant="h4" color="primary">Wie zijn wij?</Title>
@@ -41,16 +41,25 @@ const AboutUs = () => (
         alignItems="center"
         spacing={5}
       >
-        {team.map((person) => {
+        {teams.map((teamMember) => {
           const {
-            name, description, image,
-          } = person;
+            node:
+            {
+              name,
+              bio: {
+                text: description,
+              },
+              image: {
+                url,
+              },
+            },
+          } = teamMember;
           return (
             <Grid item xs={12} sm={6} md={6}>
               <TeamMember
                 title={name}
                 description={description}
-                image={image}
+                image={url}
               />
             </Grid>
           );

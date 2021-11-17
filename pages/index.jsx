@@ -1,10 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  useQuery,
   gql,
 } from '@apollo/client';
 import Layout, { HeroTypography } from '../components/Layout';
@@ -14,11 +10,35 @@ import Head from '../components/Head';
 import Diensten from '../components/Diensten';
 import Teaser from '../components/Teaser';
 import AboutUs from '../components/AboutUs';
+import client from '../lib/client';
 
-const client = new ApolloClient({
-  uri: 'https://api-eu-central-1.graphcms.com/v2/ckv72x2ho50t801xl47jpflk2/master',
-  cache: new InMemoryCache(),
-});
+export async function getStaticProps() {
+  const { data } = await client.query({
+    query: gql`
+    query teamsQuery {
+      teamsConnection(first: 10) {
+        edges {
+          node {
+            image {
+              url
+            }
+            name
+            bio {
+              text
+            }
+          }
+        }
+      }
+  }`,
+  });
+
+  const { teamsConnection: { edges: teams } } = data;
+  return {
+    props: {
+      teams,
+    },
+  };
+}
 
 export default function Home({ teams }) {
   return (
@@ -46,27 +66,9 @@ export default function Home({ teams }) {
       />
       <Diensten />
       <Teaser />
-      <AboutUs />
+      <AboutUs
+        teams={teams}
+      />
     </Layout>
   );
-}
-
-export async function getStaticProps() {
-  const { data: teams } = await client.query({
-    query: gql`
-    query teamsQuery {
-    teams {
-      name
-      bio {
-        html
-      }
-    }
-  }`,
-  });
-  console.log(teams);
-  return {
-    props: {
-      teams,
-    },
-  };
 }

@@ -5,23 +5,23 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../components/theme';
 import Head from '../components/Head';
 
-const MyApp = ({ Component, props }) => (
+const MyApp = ({ Component, pageProps }) => (
   <>
     <Head />
     <CssBaseline />
     <ThemeProvider theme={theme}>
-      <Component {...props} />
+      <Component {...pageProps} />
     </ThemeProvider>
   </>
 );
 
 MyApp.propTypes = {
   Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
-  props: PropTypes.shape({}),
+  pageProps: PropTypes.shape({}),
 };
 
 MyApp.defaultProps = {
-  props: null,
+  pageProps: null,
 };
 
 export default MyApp;

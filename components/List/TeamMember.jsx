@@ -39,7 +39,6 @@ function TeamMember({ title, description, image }) {
             layout="responsive"
             width={1}
             height={1}
-            placeholder="blur"
           />
         </ImageContainer>
         <Title
@@ -60,7 +59,7 @@ function TeamMember({ title, description, image }) {
 TeamMember.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.shape({}),
+  image: PropTypes.string,
 };
 
 TeamMember.defaultProps = {
