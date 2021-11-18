@@ -3,12 +3,27 @@ import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Link from 'next/link';
 import Card from '../components/Card';
-import events from '../data/events';
 import Head from '../components/Head';
 import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
+import eventQuery from '../lib/queries/eventQuery';
+import client from '../lib/client';
 
-export default function TraingsAanbod() {
+export async function getStaticProps() {
+  const { data: events } = await client.query({
+    query: eventQuery,
+  });
+
+  console.log(typeof events);
+
+  return {
+    props: {
+      events,
+    },
+  };
+}
+
+export default function TraingsAanbod({ events }) {
   return (
     <>
       <Head
@@ -42,7 +57,7 @@ export default function TraingsAanbod() {
         >
           {events.map((event) => {
             const {
-              title, description, image, slug,
+              title, image: { url }, slug, shortDescription,
             } = event;
             return (
               <Grid item xs={12} sm={12} md={4}>
@@ -55,8 +70,8 @@ export default function TraingsAanbod() {
                   <a>
                     <Card
                       title={title}
-                      description={description}
-                      image={image}
+                      description={shortDescription}
+                      image={url}
                     />
                   </a>
                 </Link>

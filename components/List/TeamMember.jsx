@@ -37,6 +37,8 @@ function TeamMember({ title, description, image }) {
             alt="Mountains"
             src={image}
             layout="responsive"
+            placeholder="blur"
+            blurDataURL={image}
             width={1}
             height={1}
           />
@@ -49,9 +51,8 @@ function TeamMember({ title, description, image }) {
       </RowContainer>
       <Typography
         variant="body2"
-      >
-        {description}
-      </Typography>
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
     </Container>
   );
 }

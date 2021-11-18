@@ -1,8 +1,5 @@
 import React from 'react';
 import Image from 'next/image';
-import {
-  gql,
-} from '@apollo/client';
 import Layout, { HeroTypography } from '../components/Layout';
 import hero from '../public/hero.jpg';
 import Button from '../components/Button';
@@ -11,25 +8,11 @@ import Diensten from '../components/Diensten';
 import Teaser from '../components/Teaser';
 import AboutUs from '../components/AboutUs';
 import client from '../lib/client';
+import teamQuery from '../lib/queries/teamQuery';
 
 export async function getStaticProps() {
   const { data } = await client.query({
-    query: gql`
-    query teamsQuery {
-      teamsConnection(first: 10) {
-        edges {
-          node {
-            image {
-              url
-            }
-            name
-            bio {
-              text
-            }
-          }
-        }
-      }
-  }`,
+    query: teamQuery,
   });
 
   const { teamsConnection: { edges: teams } } = data;

@@ -47,7 +47,7 @@ const AboutUs = ({ teams }) => (
             {
               name,
               bio: {
-                text: description,
+                html: description,
               },
               image: {
                 url,
