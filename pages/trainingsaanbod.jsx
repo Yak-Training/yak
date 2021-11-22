@@ -10,20 +10,21 @@ import eventQuery from '../lib/queries/eventQuery';
 import client from '../lib/client';
 
 export async function getStaticProps() {
-  const { data: events } = await client.query({
+  const { data } = await client.query({
     query: eventQuery,
   });
 
-  console.log(typeof events);
+  console.log(data);
 
   return {
     props: {
-      events,
+      data,
     },
   };
 }
 
-export default function TraingsAanbod({ events }) {
+export default function TraingsAanbod({ data }) {
+  const { events } = data;
   return (
     <>
       <Head
