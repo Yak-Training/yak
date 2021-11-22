@@ -2,22 +2,66 @@ import React from 'react';
 import Image from 'next/image';
 import Layout from '../../components/Layout';
 import aanpak from '../../public/aanpak.jpg';
+import eventQuery from '../../lib/queries/eventQuery';
+import client from '../../lib/client';
 
-const Event = () => (
-  <Layout
-    maxHeight
-    heroImage={(
-      <Image
-        alt="Aanpak"
-        src={aanpak}
-        layout="fill"
-        objectFit="cover"
-        placeholder="blur"
-      />
+export async function getStaticPaths() {
+  const { data } = await client.query({
+    query: eventQuery,
+  });
+
+  const paths = data.events.map((event) => ({
+    params: { slug: event.slug },
+  }));
+
+  console.log(paths);
+
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps({ params }) {
+  const { data } = await client.query({
+    query: eventQuery,
+  });
+
+  const { slug } = params;
+  const event = data.events.find((event) => event.slug === slug);
+
+  return {
+    props: {
+      event,
+    },
+  };
+}
+
+const Event = ({ event }) => {
+  const {
+    title,
+    description: {
+      html: description,
+    },
+    image: {
+      url,
+    },
+  } = event;
+  return (
+    <Layout
+      maxHeight
+      heroImage={(
+        <Image
+          alt="Aanpak"
+          src={url}
+          layout="fill"
+          objectFit="cover"
+        />
 )}
-  >
-    <h1>Welcome to my event</h1>
-  </Layout>
-);
+    >
+      <h1>{title}</h1>
+      <p
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+    </Layout>
+  );
+};
 
 export default Event;

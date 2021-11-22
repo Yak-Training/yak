@@ -14,8 +14,6 @@ export async function getStaticProps() {
     query: eventQuery,
   });
 
-  console.log(data);
-
   return {
     props: {
       data,
