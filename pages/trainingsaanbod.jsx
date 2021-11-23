@@ -30,6 +30,7 @@ export default function TraingsAanbod({ data }) {
         description="Yak Training en Events"
       />
       <Layout
+        maxWidth="1440px"
         maxHeight
         heroImage={(
           <Image
@@ -46,7 +47,6 @@ export default function TraingsAanbod({ data }) {
           </HeroTypography>
       )}
       >
-        <h1>Training en Events</h1>
         <Grid
           container
           direction="row"

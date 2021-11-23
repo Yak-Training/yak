@@ -37,6 +37,8 @@ export const HeroTypography = styled(Typography)`
 `;
 
 const Container = styled.main`
+  max-width: ${(props) => props.maxWidth};
+  margin: 0 auto;
   ${(props) => (props.noPadding ? 'padding: 0;' : 'padding: 24px 16px;')}
 
   @media (min-width: 600px) {
@@ -52,7 +54,7 @@ const HeroContainer = styled.div`
   @media(min-width: 1024px) {
     ${(props) => (props.maxHeight ? `
       width: 100vw;
-      height: 50vh;`
+      height: 35vh;`
     : ` 
     width: 100vw; 
     height: 100vh;`
@@ -109,7 +111,13 @@ const links = [
 ];
 
 const Layout = ({
-  heroImage, children, heroText, button, maxHeight, noPadding,
+  heroImage,
+  children,
+  heroText,
+  button,
+  maxHeight,
+  noPadding,
+  maxWidth,
 }) => (
   <>
     <Navigation
@@ -133,7 +141,7 @@ const Layout = ({
       </HeroText>
       {heroImage}
     </HeroContainer>
-    <Container noPadding={noPadding}>
+    <Container noPadding={noPadding} maxWidth={maxWidth}>
       {children}
     </Container>
     <Footer
@@ -160,6 +168,7 @@ Layout.propTypes = {
   button: PropTypes.node,
   maxHeight: PropTypes.bool,
   noPadding: PropTypes.bool,
+  maxWidth: PropTypes.string,
 };
 
 Layout.defaultProps = {
@@ -169,6 +178,7 @@ Layout.defaultProps = {
   button: null,
   maxHeight: false,
   noPadding: false,
+  maxWidth: null,
 };
 
 export default Layout;
