@@ -1,16 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
-import Layout from '../../components/Layout';
-import eventQuery from '../../lib/queries/eventQuery';
+import Layout, { HeroTypography } from '../../components/Layout';
+import blogQuery from '../../lib/queries/blogQuery';
 import client from '../../lib/client';
 
 export async function getStaticPaths() {
   const { data } = await client.query({
-    query: eventQuery,
+    query: blogQuery,
   });
 
-  const paths = data.events.map((event) => ({
-    params: { slug: event.slug },
+  const paths = data.blogs.map((blog) => ({
+    params: { slug: blog.slug },
   }));
 
   return { paths, fallback: false };
@@ -18,20 +18,20 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const { data } = await client.query({
-    query: eventQuery,
+    query: blogQuery,
   });
 
   const { slug } = params;
-  const event = data.events.find((event) => event.slug === slug);
+  const blog = data.blogs.find((blogPost) => blogPost.slug === slug);
 
   return {
     props: {
-      event,
+      blog,
     },
   };
 }
 
-const Event = ({ event }) => {
+const Event = ({ blog }) => {
   const {
     title,
     description: {
@@ -40,9 +40,15 @@ const Event = ({ event }) => {
     image: {
       url,
     },
-  } = event;
+  } = blog;
   return (
     <Layout
+      maxWidth="720px"
+      heroText={(
+        <HeroTypography variant="h3" color="white">
+          {title}
+        </HeroTypography>
+    )}
       maxHeight
       heroImage={(
         <Image
@@ -53,7 +59,6 @@ const Event = ({ event }) => {
         />
 )}
     >
-      <h1>{title}</h1>
       <p
         dangerouslySetInnerHTML={{ __html: description }}
       />

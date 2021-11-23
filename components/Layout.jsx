@@ -54,7 +54,7 @@ const HeroContainer = styled.div`
   @media(min-width: 1024px) {
     ${(props) => (props.maxHeight ? `
       width: 100vw;
-      height: 35vh;`
+      height: 40vh;`
     : ` 
     width: 100vw; 
     height: 100vh;`
@@ -99,10 +99,6 @@ const links = [
   {
     name: 'Trainingsaanbod',
     href: '/trainingsaanbod',
-  },
-  {
-    name: 'Partners',
-    href: '/partners',
   },
   {
     name: 'Contact',
