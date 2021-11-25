@@ -11,12 +11,13 @@ const Container = styled.div`
 const RowContainer = styled.div`
     display: flex;
     margin-bottom: 16px;
+    align-items: center;
 `;
 
 const ImageContainer = styled.div`
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
 `;
 
 const StyledImage = styled(Image)`
@@ -25,10 +26,15 @@ const StyledImage = styled(Image)`
 
 const Title = styled(Typography)`
     align-self: center;
-    margin-left: 24px;
 `;
 
-function TeamMember({ title, description, image }) {
+const BioContainer = styled.div`
+  padding: 0 24px;
+`;
+
+function TeamMember({
+  title, description, image, role,
+}) {
   return (
     <Container>
       <RowContainer>
@@ -43,11 +49,16 @@ function TeamMember({ title, description, image }) {
             height={1}
           />
         </ImageContainer>
-        <Title
-          variant="h6"
-        >
-          {title}
-        </Title>
+        <BioContainer>
+          <Title
+            variant="h6"
+          >
+            {title}
+          </Title>
+          <Typography color="primary" variant="subtitle2">
+            {role}
+          </Typography>
+        </BioContainer>
       </RowContainer>
       <Typography
         variant="body2"
@@ -61,12 +72,14 @@ TeamMember.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   image: PropTypes.string,
+  role: PropTypes.string,
 };
 
 TeamMember.defaultProps = {
   title: null,
   description: null,
   image: null,
+  role: null,
 };
 
 export default TeamMember;

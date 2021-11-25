@@ -40,6 +40,8 @@ const Event = ({ blog }) => {
     image: {
       url,
     },
+    author,
+    date,
   } = blog;
   return (
     <Layout
@@ -59,6 +61,8 @@ const Event = ({ blog }) => {
         />
 )}
     >
+      <p>{author}</p>
+      <p>{date}</p>
       <p
         dangerouslySetInnerHTML={{ __html: description }}
       />

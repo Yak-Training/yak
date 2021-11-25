@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import TeamMember from './List/TeamMember';
-import team from '../data/team';
 
 const MaxWidth = styled.div`
   max-width: 1024px;
@@ -46,6 +45,7 @@ const AboutUs = ({ teams }) => (
             node:
             {
               name,
+              role,
               bio: {
                 html: description,
               },
@@ -60,6 +60,7 @@ const AboutUs = ({ teams }) => (
                 title={name}
                 description={description}
                 image={url}
+                role={role}
               />
             </Grid>
           );
