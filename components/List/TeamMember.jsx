@@ -61,6 +61,7 @@ function TeamMember({
         </BioContainer>
       </RowContainer>
       <Typography
+        component="div"
         variant="body2"
         dangerouslySetInnerHTML={{ __html: description }}
       />

@@ -46,11 +46,11 @@ export default function MediaCard({ title, description, image }) {
 MediaCard.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  image: PropTypes.shape({}),
+  image: PropTypes.string,
 };
 
 MediaCard.defaultProps = {
   title: null,
   description: null,
-  image: adventure,
+  image: 'https://media.graphcms.com//GImOGpTPTuOvZC0QNXov',
 };

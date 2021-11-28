@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
@@ -54,8 +55,9 @@ const AboutUs = ({ teams }) => (
               },
             },
           } = teamMember;
+
           return (
-            <Grid item xs={12} sm={6} md={6}>
+            <Grid item xs={12} sm={6} md={6} key={name}>
               <TeamMember
                 title={name}
                 description={description}
@@ -69,5 +71,37 @@ const AboutUs = ({ teams }) => (
     </MaxWidth>
   </Background>
 );
+
+AboutUs.propTypes = {
+  teams: PropTypes.arrayOf(PropTypes.shape({
+    node: PropTypes.shape({
+      name: PropTypes.string,
+      role: PropTypes.string,
+      bio: PropTypes.shape({
+        html: PropTypes.string,
+      }),
+      image: PropTypes.shape({
+        url: PropTypes.string,
+      }),
+    }),
+  })),
+};
+
+AboutUs.defaultProps = {
+  teams: [
+    {
+      node: {
+        name: null,
+        role: null,
+        bio: {
+          html: null,
+        },
+        image: {
+          url: null,
+        },
+      },
+    },
+  ],
+};
 
 export default AboutUs;

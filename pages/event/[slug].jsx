@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Layout from '../../components/Layout';
 import eventQuery from '../../lib/queries/eventQuery';
@@ -22,7 +23,7 @@ export async function getStaticProps({ params }) {
   });
 
   const { slug } = params;
-  const event = data.events.find((event) => event.slug === slug);
+  const event = data.events.find((item) => item.slug === slug);
 
   return {
     props: {
@@ -56,11 +57,39 @@ const Event = ({ event }) => {
     >
       <h1>{title}</h1>
       <p>{date}</p>
-      <p
+      <div
         dangerouslySetInnerHTML={{ __html: description }}
       />
     </Layout>
   );
+};
+
+Event.propTypes = {
+  event: PropTypes.shape({
+    title: PropTypes.string,
+    description: {
+      html: PropTypes.string,
+    },
+    image: {
+      url: PropTypes.string,
+    },
+    author: PropTypes.string,
+    date: PropTypes.string,
+  }),
+};
+
+Event.defaultProps = {
+  event: {
+    title: null,
+    description: {
+      html: null,
+    },
+    image: {
+      url: null,
+    },
+    author: null,
+    date: null,
+  },
 };
 
 export default Event;

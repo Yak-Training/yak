@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Layout, { HeroTypography } from '../components/Layout';
 import hero from '../public/hero.jpg';
@@ -55,3 +56,11 @@ export default function Home({ teams }) {
     </Layout>
   );
 }
+
+Home.propTypes = {
+  teams: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+Home.defaultProps = {
+  teams: [],
+};

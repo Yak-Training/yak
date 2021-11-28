@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Link from 'next/link';
@@ -21,7 +22,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function TraingsAanbod({ data }) {
+export default function BlogPage({ data }) {
   const { blogs } = data;
   return (
     <>
@@ -58,8 +59,9 @@ export default function TraingsAanbod({ data }) {
             const {
               title, image: { url }, slug, shortDescription,
             } = blog;
+
             return (
-              <Grid item xs={12} sm={12} md={4}>
+              <Grid item xs={12} sm={12} md={4} key={slug}>
                 <Link
                   href={{
                     pathname: '/blog/[slug]',
@@ -82,3 +84,29 @@ export default function TraingsAanbod({ data }) {
     </>
   );
 }
+
+BlogPage.propTypes = {
+  data: PropTypes.shape({
+    blogs: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string,
+      shortDescription: PropTypes.string,
+      image: PropTypes.shape({
+        url: PropTypes.string,
+      }),
+    })),
+  }),
+};
+
+BlogPage.defaultProps = {
+  data: {
+    blogs: [
+      {
+        title: null,
+        shortDescription: null,
+        image: {
+          url: null,
+        },
+      },
+    ],
+  },
+};

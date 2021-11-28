@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Layout, { HeroTypography } from '../../components/Layout';
 import blogQuery from '../../lib/queries/blogQuery';
@@ -31,7 +32,7 @@ export async function getStaticProps({ params }) {
   };
 }
 
-const Event = ({ blog }) => {
+const Blog = ({ blog }) => {
   const {
     title,
     description: {
@@ -63,11 +64,39 @@ const Event = ({ blog }) => {
     >
       <p>{author}</p>
       <p>{date}</p>
-      <p
+      <div
         dangerouslySetInnerHTML={{ __html: description }}
       />
     </Layout>
   );
 };
 
-export default Event;
+Blog.propTypes = {
+  blog: PropTypes.shape({
+    title: PropTypes.string,
+    description: {
+      html: PropTypes.string,
+    },
+    image: {
+      url: PropTypes.string,
+    },
+    author: PropTypes.string,
+    date: PropTypes.string,
+  }),
+};
+
+Blog.defaultProps = {
+  blog: {
+    title: null,
+    description: {
+      html: null,
+    },
+    image: {
+      url: null,
+    },
+    author: null,
+    date: null,
+  },
+};
+
+export default Blog;
