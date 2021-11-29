@@ -9,6 +9,7 @@ import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
 import blogQuery from '../lib/queries/blogQuery';
 import client from '../lib/client';
+import Anchor from '../components/Anchor';
 
 export async function getStaticProps() {
   const { data } = await client.query({
@@ -68,13 +69,13 @@ export default function BlogPage({ data }) {
                     query: { slug },
                   }}
                 >
-                  <a>
+                  <Anchor>
                     <Card
                       title={title}
                       description={shortDescription}
                       image={url}
                     />
-                  </a>
+                  </Anchor>
                 </Link>
               </Grid>
             );

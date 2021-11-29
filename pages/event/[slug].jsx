@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
-import Layout from '../../components/Layout';
+import Layout, { HeroTypography } from '../../components/Layout';
 import eventQuery from '../../lib/queries/eventQuery';
 import client from '../../lib/client';
 
@@ -46,6 +46,12 @@ const Event = ({ event }) => {
   return (
     <Layout
       maxHeight
+      heroText={(
+        <HeroTypography variant="h3" color="white">
+          {title}
+        </HeroTypography>
+      )}
+      maxWidth="700px"
       heroImage={(
         <Image
           alt="Aanpak"
@@ -55,7 +61,6 @@ const Event = ({ event }) => {
         />
 )}
     >
-      <h1>{title}</h1>
       <p>{date}</p>
       <div
         dangerouslySetInnerHTML={{ __html: description }}

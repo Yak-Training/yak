@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
-import Layout, { HeroTypography } from '../../components/Layout';
+import Link from 'next/link';
+import { Typography } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import Layout from '../../components/Layout';
 import blogQuery from '../../lib/queries/blogQuery';
 import client from '../../lib/client';
+import CustomizedBreadcrumbs, { StyledBreadcrumb } from '../../components/BreadCrumbs';
+import Anchor from '../../components/Anchor';
 
 export async function getStaticPaths() {
   const { data } = await client.query({
@@ -41,6 +46,7 @@ const Blog = ({ blog }) => {
     image: {
       url,
     },
+    slug,
     author,
     date,
   } = blog;
@@ -48,9 +54,9 @@ const Blog = ({ blog }) => {
     <Layout
       maxWidth="720px"
       heroText={(
-        <HeroTypography variant="h3" color="white">
+        <Typography variant="h3" color="white" component="h1">
           {title}
-        </HeroTypography>
+        </Typography>
     )}
       maxHeight
       heroImage={(
@@ -62,6 +68,36 @@ const Blog = ({ blog }) => {
         />
 )}
     >
+      <CustomizedBreadcrumbs
+        crumbs={(
+          <>
+            <Link
+              href="/"
+            >
+              <Anchor>
+                <StyledBreadcrumb
+                  component="span"
+                  label="Home"
+                  icon={<HomeIcon fontSize="small" />}
+                />
+              </Anchor>
+            </Link>
+            <Link
+              href={{
+                pathname: '/blogs/[slug]',
+                query: { slug },
+              }}
+            >
+              <Anchor>
+                <StyledBreadcrumb
+                  component="span"
+                  label={title}
+                />
+              </Anchor>
+            </Link>
+          </>
+)}
+      />
       <p>{author}</p>
       <p>{date}</p>
       <div

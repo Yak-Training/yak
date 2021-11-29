@@ -9,6 +9,7 @@ import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
 import eventQuery from '../lib/queries/eventQuery';
 import client from '../lib/client';
+import Anchor from '../components/Anchor';
 
 export async function getStaticProps() {
   const { data } = await client.query({
@@ -67,13 +68,13 @@ export default function TrainingsAanbod({ data }) {
                     query: { slug },
                   }}
                 >
-                  <a>
+                  <Anchor>
                     <Card
                       title={title}
                       description={shortDescription}
                       image={url}
                     />
-                  </a>
+                  </Anchor>
                 </Link>
               </Grid>
             );
