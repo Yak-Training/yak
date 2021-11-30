@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Grid from '@mui/material/Grid';
 import { Typography } from '@mui/material';
@@ -33,7 +34,7 @@ const Background = styled.div`
   background-color: ${(props) => props.theme.palette.primary.background};
 `;
 
-const Diensten = () => (
+const Diensten = ({ services }) => (
   <RelativeContainer>
     <Background>
       <MaxWidth>
@@ -46,22 +47,42 @@ const Diensten = () => (
           container
           direction="row"
           justifyContent="center"
-          alignItems="center"
           spacing={5}
+          alignItems="stretch"
         >
-          <Grid item xs={12} sm={4} md={4}>
-            <Card />
-          </Grid>
-          <Grid item xs={12} sm={4} md={4}>
-            <Card />
-          </Grid>
-          <Grid item xs={12} sm={4} md={4}>
-            <Card />
-          </Grid>
+          {services.map((service) => {
+            const { title, description: { html: description } } = service;
+            return (
+              <Grid item xs={12} sm={4} md={4}>
+                <Card
+                  title={title}
+                  description={description}
+                />
+              </Grid>
+            );
+          })}
         </Grid>
       </MaxWidth>
     </Background>
   </RelativeContainer>
 );
+
+Diensten.propTypes = {
+  services: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    description: {
+      html: PropTypes.string,
+    },
+  })),
+};
+
+Diensten.defaultProps = {
+  services: {
+    title: null,
+    description: {
+      html: null,
+    },
+  },
+};
 
 export default Diensten;

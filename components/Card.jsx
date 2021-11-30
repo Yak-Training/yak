@@ -6,14 +6,6 @@ import CardContent from '@mui/material/CardContent';
 import Image from 'next/image';
 import Typography from '@mui/material/Typography';
 
-const CardDescription = styled(Typography)`
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-`;
-
 const ImageContainer = styled.div`
   position: relative;
   padding-bottom: 66.67%;
@@ -34,9 +26,12 @@ export default function MediaCard({ title, description, image }) {
         <Typography gutterBottom variant="h5" component="div">
           {title}
         </Typography>
-        <CardDescription variant="body2" color="text.secondary">
-          {description}
-        </CardDescription>
+        <Typography
+          variant="body2"
+          component="div"
+          color="text.secondary"
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
       </CardContent>
     </Card>
   );

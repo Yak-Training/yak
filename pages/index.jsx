@@ -10,27 +10,40 @@ import Teaser from '../components/Teaser';
 import AboutUs from '../components/AboutUs';
 import client from '../lib/client';
 import teamQuery from '../lib/queries/teamQuery';
+import heroQuery from '../lib/queries/heroQuery';
+import serviceQuery from '../lib/queries/serviceQuery';
 
 export async function getStaticProps() {
-  const { data } = await client.query({
+  const { data: { teamsConnection } } = await client.query({
     query: teamQuery,
   });
 
-  const { teamsConnection: { edges: teams } } = data;
+  const { data: { heroes } } = await client.query({
+    query: heroQuery,
+  });
+
+  const { data: { services } } = await client.query({
+    query: serviceQuery,
+  });
+
+  const { edges: teams } = teamsConnection;
+  const { heroText } = heroes[0];
   return {
     props: {
       teams,
+      heroText,
+      services,
     },
   };
 }
 
-export default function Home({ teams }) {
+export default function Home({ teams, heroText, services }) {
   return (
     <Layout
       noPadding
       heroText={(
         <HeroTypography variant="h3" color="white">
-          Creating Sustainable Engagement
+          {heroText}
         </HeroTypography>
         )}
       button={<Button color="secondary" variant="contained">Contact</Button>}
@@ -48,7 +61,7 @@ export default function Home({ teams }) {
         title="Yak"
         description="Creating sustainable engagement"
       />
-      <Diensten />
+      <Diensten services={services} />
       <Teaser />
       <AboutUs
         teams={teams}
@@ -59,8 +72,12 @@ export default function Home({ teams }) {
 
 Home.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.shape({})),
+  heroText: PropTypes.string,
+  services: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 Home.defaultProps = {
   teams: [],
+  heroText: null,
+  services: [],
 };

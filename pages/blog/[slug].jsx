@@ -110,6 +110,7 @@ const Blog = ({ blog }) => {
 Blog.propTypes = {
   blog: PropTypes.shape({
     title: PropTypes.string,
+    slug: PropTypes.string,
     description: {
       html: PropTypes.string,
     },
@@ -124,6 +125,7 @@ Blog.propTypes = {
 Blog.defaultProps = {
   blog: {
     title: null,
+    slug: null,
     description: {
       html: null,
     },
