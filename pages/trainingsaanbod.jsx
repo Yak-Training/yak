@@ -53,7 +53,7 @@ export default function TrainingsAanbod({ data }) {
           container
           direction="row"
           justifyContent="center"
-          alignItems="center"
+          alignItems="stretch"
           spacing={5}
         >
           {events.map((event) => {

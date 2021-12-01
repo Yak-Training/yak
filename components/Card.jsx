@@ -11,9 +11,23 @@ const ImageContainer = styled.div`
   padding-bottom: 66.67%;
 `;
 
+const StyledCard = styled(Card)`
+  height: 100%;
+  box-shadow: 0px 11px 18px 10px rgba(0, 0, 0, 0.06), 0px 11px 18px 10px rgba(0, 0, 0, 0.03);
+  position: relative;
+  top: 0;
+  transition: all .25s ease;
+  cursor: pointer;
+
+  &:hover {
+    top: -10px;
+    box-shadow: 0 24px 20px rgb(0 0 0 / 25%)
+  }
+`;
+
 export default function MediaCard({ title, description, image }) {
   return (
-    <Card>
+    <StyledCard>
       <ImageContainer>
         <Image
           alt="Mountains"
@@ -23,7 +37,7 @@ export default function MediaCard({ title, description, image }) {
         />
       </ImageContainer>
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography align="center" gutterBottom variant="h6" component="h3">
           {title}
         </Typography>
         <Typography
@@ -33,7 +47,7 @@ export default function MediaCard({ title, description, image }) {
           dangerouslySetInnerHTML={{ __html: description }}
         />
       </CardContent>
-    </Card>
+    </StyledCard>
   );
 }
 

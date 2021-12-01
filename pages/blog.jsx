@@ -53,7 +53,7 @@ export default function BlogPage({ data }) {
           container
           direction="row"
           justifyContent="center"
-          alignItems="center"
+          alignItems="stretch"
           spacing={5}
         >
           {blogs.map((blog) => {
