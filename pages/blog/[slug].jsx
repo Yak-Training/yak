@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
@@ -38,6 +39,8 @@ export async function getStaticProps({ params }) {
 }
 
 const Blog = ({ blog }) => {
+  const { query: { slug } } = useRouter();
+
   const {
     title,
     description: {
@@ -46,7 +49,6 @@ const Blog = ({ blog }) => {
     image: {
       url,
     },
-    slug,
     author,
     date,
   } = blog;
@@ -73,6 +75,7 @@ const Blog = ({ blog }) => {
           <>
             <Link
               href="/"
+              passHref
             >
               <Anchor>
                 <StyledBreadcrumb
@@ -83,10 +86,8 @@ const Blog = ({ blog }) => {
               </Anchor>
             </Link>
             <Link
-              href={{
-                pathname: '/blogs/[slug]',
-                query: { slug },
-              }}
+              href={`/blog/${slug}`}
+              passHref
             >
               <Anchor>
                 <StyledBreadcrumb

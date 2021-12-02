@@ -34,6 +34,8 @@ export default function MediaCard({ title, description, image }) {
           src={image}
           layout="fill"
           objectFit="cover"
+          placeholder="blur"
+          blurDataURL={image}
         />
       </ImageContainer>
       <CardContent>
