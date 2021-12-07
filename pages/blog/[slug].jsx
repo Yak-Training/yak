@@ -52,6 +52,19 @@ const Blog = ({ blog }) => {
     author,
     date,
   } = blog;
+
+  const crumbsData = [
+    {
+      label: 'Home',
+      href: '/',
+      icon: <HomeIcon fontSize="small" />,
+    },
+    {
+      label: title,
+      href: `/blog/${slug}`,
+      icon: null,
+    },
+  ];
   return (
     <Layout
       maxWidth="720px"
@@ -71,33 +84,20 @@ const Blog = ({ blog }) => {
 )}
     >
       <CustomizedBreadcrumbs
-        crumbs={(
-          <>
-            <Link
-              href="/"
-              passHref
-            >
-              <Anchor>
-                <StyledBreadcrumb
-                  component="span"
-                  label="Home"
-                  icon={<HomeIcon fontSize="small" />}
-                />
-              </Anchor>
-            </Link>
-            <Link
-              href={`/blog/${slug}`}
-              passHref
-            >
-              <Anchor>
-                <StyledBreadcrumb
-                  component="span"
-                  label={title}
-                />
-              </Anchor>
-            </Link>
-          </>
-)}
+        crumbs={crumbsData.map((crumb) => (
+          <Link
+            href={crumb.href}
+            passHref
+          >
+            <Anchor>
+              <StyledBreadcrumb
+                component="span"
+                label={crumb.label}
+                icon={crumb.icon}
+              />
+            </Anchor>
+          </Link>
+        ))}
       />
       <p>{author}</p>
       <p>{date}</p>

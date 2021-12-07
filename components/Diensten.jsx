@@ -51,12 +51,21 @@ const Diensten = ({ services }) => (
           alignItems="stretch"
         >
           {services.map((service) => {
-            const { title, description: { html: description } } = service;
+            const {
+              title,
+              description: {
+                html: description,
+              },
+              image: {
+                url,
+              },
+            } = service;
             return (
               <Grid item xs={12} sm={4} md={4}>
                 <Card
                   title={title}
                   description={description}
+                  image={url}
                 />
               </Grid>
             );
