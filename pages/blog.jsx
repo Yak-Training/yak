@@ -25,6 +25,7 @@ export async function getStaticProps() {
 
 export default function BlogPage({ data }) {
   const { blogs } = data;
+
   return (
     <>
       <Head

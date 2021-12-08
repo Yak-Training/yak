@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import Link from 'next/link';
+import HomeIcon from '@mui/icons-material/Home';
 import Navigation from './Navigation';
 import Footer from './Footer';
 import Typography from './Typography';
+import CustomizedBreadcrumbs, { StyledBreadcrumb } from './BreadCrumbs';
+import Anchor from './Anchor';
 
 const StyledAnchor = styled.a`
   text-decoration: none;
@@ -46,10 +50,21 @@ const Container = styled.main`
   }
 `;
 
+const BreadCrumbsContainer = styled.div`
+  margin-bottom: 24px;
+`;
+
 const HeroContainer = styled.div`
   position: relative;
   width: 100vw;
   height: 60vh;
+  background: ${(props) => (props.theme.palette.primary.main)};
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    opacity: 0.5;
+  }
 
   @media(min-width: 1024px) {
     ${(props) => (props.maxHeight ? `
@@ -114,48 +129,97 @@ const Layout = ({
   maxHeight,
   noPadding,
   maxWidth,
-}) => (
-  <>
-    <Navigation
-      links={links.map((link) => {
-        const { name, href } = link;
-        return (
-          <Link href={href} passHref key={href}>
-            <StyledAnchor>
-              <StyledTypography color="white" variant="subtitle2">
-                {name}
-              </StyledTypography>
-            </StyledAnchor>
-          </Link>
-        );
-      })}
-    />
-    <HeroContainer maxHeight={maxHeight}>
-      <HeroText>
-        {heroText}
-        {button}
-      </HeroText>
-      {heroImage}
-    </HeroContainer>
-    <Container noPadding={noPadding} maxWidth={maxWidth}>
-      {children}
-    </Container>
-    <Footer
-      links={links.map((link) => {
-        const { name, href } = link;
-        return (
-          <Link href={href} passHref key={href}>
-            <StyledAnchor>
-              <StyledTypography variant="subtitle2">
-                {name}
-              </StyledTypography>
-            </StyledAnchor>
-          </Link>
-        );
-      })}
-    />
-  </>
-);
+  noBreadCrumbs,
+}) => {
+  const { route: currentRoute, query: { slug }, asPath } = useRouter();
+
+  console.log(slug);
+
+  const crumbsData = [
+    {
+      label: 'Home',
+      href: '/',
+      icon: <HomeIcon fontSize="small" />,
+    },
+    {
+      label: asPath,
+      href: currentRoute,
+      hrefWithSlug: {
+        pathname: currentRoute,
+        query: { slug },
+      },
+      icon: null,
+    },
+  ];
+  return (
+    <>
+      <Navigation
+        links={links.map((link) => {
+          const { name, href } = link;
+          return (
+            <Link href={href} passHref key={href}>
+              <StyledAnchor>
+                <StyledTypography color="white" variant="subtitle2">
+                  {name}
+                </StyledTypography>
+              </StyledAnchor>
+            </Link>
+          );
+        })}
+      />
+      <HeroContainer maxHeight={maxHeight}>
+        <HeroText>
+          {heroText}
+          {button}
+        </HeroText>
+        {heroImage}
+      </HeroContainer>
+      <Container noPadding={noPadding} maxWidth={maxWidth}>
+        { noBreadCrumbs ? null
+          : (
+            <BreadCrumbsContainer>
+              <CustomizedBreadcrumbs
+                crumbs={crumbsData.map((crumb) => {
+                  const {
+                    label, icon, href, hrefWithSlug,
+                  } = crumb;
+                  return (
+                    <Link
+                      href={slug ? hrefWithSlug : href}
+                      passHref
+                    >
+                      <Anchor>
+                        <StyledBreadcrumb
+                          component="span"
+                          label={label}
+                          icon={icon}
+                        />
+                      </Anchor>
+                    </Link>
+                  );
+                })}
+              />
+            </BreadCrumbsContainer>
+          )}
+        {children}
+      </Container>
+      <Footer
+        links={links.map((link) => {
+          const { name, href } = link;
+          return (
+            <Link href={href} passHref key={href}>
+              <StyledAnchor>
+                <StyledTypography variant="subtitle2">
+                  {name}
+                </StyledTypography>
+              </StyledAnchor>
+            </Link>
+          );
+        })}
+      />
+    </>
+  );
+};
 
 Layout.propTypes = {
   heroImage: PropTypes.node,
@@ -165,6 +229,7 @@ Layout.propTypes = {
   maxHeight: PropTypes.bool,
   noPadding: PropTypes.bool,
   maxWidth: PropTypes.string,
+  noBreadCrumbs: PropTypes.bool,
 };
 
 Layout.defaultProps = {
@@ -175,6 +240,7 @@ Layout.defaultProps = {
   maxHeight: false,
   noPadding: false,
   maxWidth: null,
+  noBreadCrumbs: false,
 };
 
 export default Layout;

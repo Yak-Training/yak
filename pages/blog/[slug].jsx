@@ -65,6 +65,7 @@ const Blog = ({ blog }) => {
       icon: null,
     },
   ];
+
   return (
     <Layout
       maxWidth="720px"

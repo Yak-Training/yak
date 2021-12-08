@@ -47,6 +47,7 @@ export default function Home({ teams, heroText, services }) {
         </HeroTypography>
         )}
       button={<Button color="secondary" variant="contained">Contact</Button>}
+      noBreadCrumbs
       heroImage={(
         <Image
           alt="Mountains"
