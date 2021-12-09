@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
+import HomeIcon from '@mui/icons-material/Home';
 import Link from 'next/link';
 import Card from '../components/Card';
 import Head from '../components/Head';
@@ -26,6 +27,18 @@ export async function getStaticProps() {
 export default function BlogPage({ data }) {
   const { blogs } = data;
 
+  const crumbsData = [
+    {
+      label: 'Home',
+      href: '/',
+      icon: <HomeIcon fontSize="small" />,
+    },
+    {
+      label: 'Blog',
+      href: '/blog',
+    },
+  ];
+
   return (
     <>
       <Head
@@ -49,6 +62,7 @@ export default function BlogPage({ data }) {
             Blog
           </HeroTypography>
       )}
+        crumbsData={crumbsData}
       >
         <Grid
           container

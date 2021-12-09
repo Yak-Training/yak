@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
+import { useRouter } from 'next/router';
+import { Typography } from '@mui/material';
 import Layout from '../../components/Layout';
 import blogQuery from '../../lib/queries/blogQuery';
 import client from '../../lib/client';
-import CustomizedBreadcrumbs, { StyledBreadcrumb } from '../../components/BreadCrumbs';
-import Anchor from '../../components/Anchor';
 
 export async function getStaticPaths() {
   const { data } = await client.query({
@@ -39,8 +36,6 @@ export async function getStaticProps({ params }) {
 }
 
 const Blog = ({ blog }) => {
-  const { query: { slug } } = useRouter();
-
   const {
     title,
     description: {
@@ -60,9 +55,12 @@ const Blog = ({ blog }) => {
       icon: <HomeIcon fontSize="small" />,
     },
     {
+      label: 'Blog',
+      href: '/blog',
+    },
+    {
       label: title,
-      href: `/blog/${slug}`,
-      icon: null,
+      href: `/blog/${title}`,
     },
   ];
 
@@ -83,23 +81,8 @@ const Blog = ({ blog }) => {
           objectFit="cover"
         />
 )}
+      crumbsData={crumbsData}
     >
-      <CustomizedBreadcrumbs
-        crumbs={crumbsData.map((crumb) => (
-          <Link
-            href={crumb.href}
-            passHref
-          >
-            <Anchor>
-              <StyledBreadcrumb
-                component="span"
-                label={crumb.label}
-                icon={crumb.icon}
-              />
-            </Anchor>
-          </Link>
-        ))}
-      />
       <p>{author}</p>
       <p>{date}</p>
       <div
