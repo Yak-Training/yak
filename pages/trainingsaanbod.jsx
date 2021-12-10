@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Link from 'next/link';
+import HomeIcon from '@mui/icons-material/Home';
 import Card from '../components/Card';
 import Head from '../components/Head';
 import aanpak from '../public/aanpak.jpg';
@@ -25,6 +26,19 @@ export async function getStaticProps() {
 
 export default function TrainingsAanbod({ data }) {
   const { events } = data;
+
+  const crumbsData = [
+    {
+      label: 'Home',
+      href: '/',
+      icon: <HomeIcon fontSize="small" />,
+    },
+    {
+      label: 'Trainingsaanbod',
+      href: '/trainingsaanbod',
+    },
+  ];
+
   return (
     <>
       <Head
@@ -32,6 +46,7 @@ export default function TrainingsAanbod({ data }) {
         description="Yak Training en Events"
       />
       <Layout
+        crumbsData={crumbsData}
         maxWidth="1440px"
         maxHeight
         heroImage={(

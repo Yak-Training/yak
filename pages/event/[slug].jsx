@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import HomeIcon from '@mui/icons-material/Home';
 import Image from 'next/image';
 import Layout, { HeroTypography } from '../../components/Layout';
 import eventQuery from '../../lib/queries/eventQuery';
@@ -43,8 +44,26 @@ const Event = ({ event }) => {
     },
     date,
   } = event;
+
+  const crumbsData = [
+    {
+      label: 'Home',
+      href: '/',
+      icon: <HomeIcon fontSize="small" />,
+    },
+    {
+      label: 'Trainingsaanbod',
+      href: '/trainingsaanbod',
+    },
+    {
+      label: title,
+      href: `/event/${title}`,
+    },
+  ];
+
   return (
     <Layout
+      crumbsData={crumbsData}
       maxHeight
       heroText={(
         <HeroTypography variant="h3" color="white">
