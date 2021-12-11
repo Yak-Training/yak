@@ -66,9 +66,7 @@ export default function TrainingsAanbod({ data }) {
       >
         <Grid
           container
-          direction="row"
           justifyContent="center"
-          alignItems="stretch"
           spacing={5}
         >
           {events.map((event) => {

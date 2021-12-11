@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
 import HomeIcon from '@mui/icons-material/Home';
-import { useRouter } from 'next/router';
+import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';
 import Layout from '../../components/Layout';
 import blogQuery from '../../lib/queries/blogQuery';
@@ -66,7 +66,6 @@ const Blog = ({ blog }) => {
 
   return (
     <Layout
-      maxWidth="720px"
       heroText={(
         <Typography variant="h3" color="white" component="h1">
           {title}
@@ -83,11 +82,19 @@ const Blog = ({ blog }) => {
 )}
       crumbsData={crumbsData}
     >
-      <p>{author}</p>
-      <p>{date}</p>
-      <div
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
+      <Box
+        component="div"
+        sx={{
+          maxWidth: '640px',
+          margin: '0 auto',
+        }}
+      >
+        <p>{author}</p>
+        <p>{date}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      </Box>
     </Layout>
   );
 };

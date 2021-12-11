@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HomeIcon from '@mui/icons-material/Home';
+import Box from '@mui/material/Box';
 import Image from 'next/image';
 import Layout, { HeroTypography } from '../../components/Layout';
 import eventQuery from '../../lib/queries/eventQuery';
@@ -57,7 +58,7 @@ const Event = ({ event }) => {
     },
     {
       label: title,
-      href: `/event/${title}`,
+      href: `/event/${slug}`,
     },
   ];
 
@@ -70,7 +71,6 @@ const Event = ({ event }) => {
           {title}
         </HeroTypography>
       )}
-      maxWidth="700px"
       heroImage={(
         <Image
           alt="Aanpak"
@@ -80,10 +80,18 @@ const Event = ({ event }) => {
         />
 )}
     >
-      <p>{date}</p>
-      <div
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
+      <Box
+        component="div"
+        sx={{
+          maxWidth: '640px',
+          margin: '0 auto',
+        }}
+      >
+        <p>{date}</p>
+        <div
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+      </Box>
     </Layout>
   );
 };

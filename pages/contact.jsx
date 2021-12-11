@@ -4,6 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import Head from '../components/Head';
 import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
+import ContactForm from '../components/ContactForm';
 
 export default function TraingsAanbod() {
   const crumbsData = [
@@ -42,7 +43,7 @@ export default function TraingsAanbod() {
           </HeroTypography>
       )}
       >
-        <h1>Contact</h1>
+        <ContactForm />
       </Layout>
     </>
   );
