@@ -8,8 +8,9 @@ import Typography from './Typography';
 import CustomizedBreadcrumbs, { StyledBreadcrumb } from './BreadCrumbs';
 import Anchor from './Anchor';
 
-const StyledAnchor = styled.a`
-  text-decoration: none;
+const StyledAnchor = styled(Anchor)`
+  margin: 4px 0;
+  display: inline-block;
 `;
 
 const StyledTypography = styled(Typography)`
@@ -136,11 +137,11 @@ const Layout = ({
         const { name, href } = link;
         return (
           <Link href={href} passHref key={href}>
-            <StyledAnchor>
+            <Anchor>
               <StyledTypography color="white" variant="subtitle2">
                 {name}
               </StyledTypography>
-            </StyledAnchor>
+            </Anchor>
           </Link>
         );
       })}
@@ -166,13 +167,13 @@ const Layout = ({
                     href={href}
                     passHref
                   >
-                    <Anchor>
+                    <StyledAnchor>
                       <StyledBreadcrumb
                         component="span"
                         label={label}
                         icon={icon}
                       />
-                    </Anchor>
+                    </StyledAnchor>
                   </Link>
                 );
               })}
@@ -186,11 +187,11 @@ const Layout = ({
         const { name, href } = link;
         return (
           <Link href={href} passHref key={href}>
-            <StyledAnchor>
+            <Anchor>
               <StyledTypography variant="subtitle2">
                 {name}
               </StyledTypography>
-            </StyledAnchor>
+            </Anchor>
           </Link>
         );
       })}
