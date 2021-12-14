@@ -44,6 +44,7 @@ const Event = ({ event }) => {
       url,
     },
     date,
+    slug,
   } = event;
 
   const crumbsData = [
@@ -107,6 +108,7 @@ Event.propTypes = {
     },
     author: PropTypes.string,
     date: PropTypes.string,
+    slug: PropTypes.string,
   }),
 };
 
@@ -121,6 +123,7 @@ Event.defaultProps = {
     },
     author: null,
     date: null,
+    slug: null,
   },
 };
 

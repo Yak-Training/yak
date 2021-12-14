@@ -45,6 +45,7 @@ const Blog = ({ blog }) => {
       url,
     },
     author,
+    slug,
     date,
   } = blog;
 
@@ -60,7 +61,7 @@ const Blog = ({ blog }) => {
     },
     {
       label: title,
-      href: `/blog/${title}`,
+      href: `/blog/${slug}`,
     },
   ];
 

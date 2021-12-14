@@ -64,35 +64,37 @@ export default function TrainingsAanbod({ data }) {
           </HeroTypography>
       )}
       >
-        <Grid
-          container
-          justifyContent="center"
-          spacing={5}
-        >
-          {events.map((event) => {
-            const {
-              title, image: { url }, slug, shortDescription,
-            } = event;
-            return (
-              <Grid item xs={12} sm={12} md={4} key={slug}>
-                <Link
-                  href={{
-                    pathname: '/event/[slug]',
-                    query: { slug },
-                  }}
-                >
-                  <Anchor>
-                    <Card
-                      title={title}
-                      description={shortDescription}
-                      image={url}
-                    />
-                  </Anchor>
-                </Link>
-              </Grid>
-            );
-          })}
-        </Grid>
+        <div>
+          <Grid
+            container
+            justifyContent="center"
+            spacing={3}
+          >
+            {events.map((event) => {
+              const {
+                title, image: { url }, slug, shortDescription,
+              } = event;
+              return (
+                <Grid item xs={12} sm={12} md={4} key={slug}>
+                  <Link
+                    href={{
+                      pathname: '/event/[slug]',
+                      query: { slug },
+                    }}
+                  >
+                    <Anchor>
+                      <Card
+                        title={title}
+                        description={shortDescription}
+                        image={url}
+                      />
+                    </Anchor>
+                  </Link>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </div>
       </Layout>
     </>
   );
