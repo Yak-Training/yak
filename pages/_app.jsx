@@ -4,6 +4,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '../components/theme';
 import Head from '../components/Head';
+import '../styles/globals.css';
 
 const MyApp = ({ Component, pageProps }) => (
   <>

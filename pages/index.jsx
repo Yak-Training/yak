@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
+import Link from 'next/link';
 import Layout, { HeroTypography } from '../components/Layout';
 import hero from '../public/hero.jpg';
 import Button from '../components/Button';
 import Head from '../components/Head';
 import Diensten from '../components/Diensten';
+import Anchor from '../components/Anchor';
 import Teaser from '../components/Teaser';
 import AboutUs from '../components/AboutUs';
 import client from '../lib/client';
@@ -46,7 +48,19 @@ export default function Home({ teams, heroText, services }) {
           {heroText}
         </HeroTypography>
         )}
-      button={<Button color="secondary" variant="contained">Contact</Button>}
+      button={(
+        <Link
+          href={{
+            pathname: '/contact',
+          }}
+        >
+          <Anchor>
+            <Button color="secondary" variant="contained">
+              Contact
+            </Button>
+          </Anchor>
+        </Link>
+)}
       noBreadCrumbs
       heroImage={(
         <Image

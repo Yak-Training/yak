@@ -6,8 +6,10 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Image from 'next/image';
+import Link from 'next/link';
 import Drawer from './Drawer';
-import logo from '../public/logo.svg';
+import logo from '../public/logoWhite.svg';
+import Anchor from './Anchor';
 
 const StyledToolbar = styled(Toolbar)`
   && {
@@ -72,14 +74,21 @@ const Navigation = ({ links }) => {
       >
         <MenuIcon color="white" />
       </StyledIconButton>
-      <Logo>
-        <Image
-          width={125}
-          height={125}
-          src={logo}
-          alt="Yak"
-        />
-      </Logo>
+      <Link
+        href="./"
+        passHref
+      >
+        <Anchor>
+          <Logo>
+            <Image
+              width={125}
+              height={125}
+              src={logo}
+              alt="Yak"
+            />
+          </Logo>
+        </Anchor>
+      </Link>
       <StyledToolbar>
         <Drawer open={open} onClose={handleClose}>
           {links}

@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import Navigation from './Navigation';
 import Footer from './Footer';
 import Typography from './Typography';
 import CustomizedBreadcrumbs, { StyledBreadcrumb } from './BreadCrumbs';
 import Anchor from './Anchor';
+import Hero from './Hero';
+import Navigation from './Navigation';
 
 const StyledAnchor = styled(Anchor)`
   margin: 4px 0;
@@ -99,10 +100,6 @@ const HeroText = styled.div`
 
 const links = [
   {
-    name: 'Home',
-    href: '/',
-  },
-  {
     name: 'Blog',
     href: '/blog',
   },
@@ -132,27 +129,32 @@ const Layout = ({
   crumbsData,
 }) => (
   <>
-    <Navigation
-      links={links.map((link) => {
-        const { name, href } = link;
-        return (
-          <Link href={href} passHref key={href}>
-            <Anchor>
-              <StyledTypography color="white" variant="subtitle2">
-                {name}
-              </StyledTypography>
-            </Anchor>
-          </Link>
-        );
-      })}
-    />
-    <HeroContainer maxHeight={maxHeight}>
-      <HeroText>
-        {heroText}
-        {button}
-      </HeroText>
-      {heroImage}
-    </HeroContainer>
+    {maxHeight
+      ? (
+        <>
+          <Navigation
+            links={links.map((link) => {
+              const { name, href } = link;
+              return (
+                <Link href={href} passHref key={href}>
+                  <Anchor>
+                    <StyledTypography color="white" variant="subtitle2">
+                      {name}
+                    </StyledTypography>
+                  </Anchor>
+                </Link>
+              );
+            })}
+          />
+          <HeroContainer maxHeight={maxHeight}>
+            <HeroText>
+              {heroText}
+              {button}
+            </HeroText>
+            {heroImage}
+          </HeroContainer>
+        </>
+      ) : <Hero navLinks={links} heroText="Creating sustainable engagement" />}
     <Container noPadding={noPadding} maxWidth={maxWidth}>
       { noBreadCrumbs ? null
         : (

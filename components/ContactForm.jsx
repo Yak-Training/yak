@@ -6,8 +6,8 @@ export default function ContactForm() {
   return (
     <Box
       component="form"
-      noValidate
-      autoComplete="off"
+      name="contact"
+      netlify
       sx={{
         maxWidth: '640px',
         margin: '0 auto',
