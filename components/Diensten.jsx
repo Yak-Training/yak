@@ -6,7 +6,6 @@ import { Typography } from '@mui/material';
 import Card from './Card';
 
 const MaxWidth = styled.div`
-    max-width: 1024px;
     margin: 0 auto;
     padding: 32px 16px;
 

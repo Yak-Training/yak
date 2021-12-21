@@ -48,18 +48,9 @@ export default function TrainingsAanbod({ data }) {
       <Layout
         crumbsData={crumbsData}
         maxWidth="1440px"
-        maxHeight
-        heroImage={(
-          <Image
-            alt="Aanpak"
-            src={aanpak}
-            layout="fill"
-            objectFit="cover"
-            placeholder="blur"
-          />
-    )}
+        heroImage={aanpak}
         heroText={(
-          <HeroTypography variant="h3" color="white">
+          <HeroTypography variant="h3" color="black">
             Training en Events
           </HeroTypography>
       )}

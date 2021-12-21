@@ -74,6 +74,13 @@ const TextContainer = styled.div`
   margin: 0 auto;
 `;
 
+const StyledButton = styled(Button)`
+  &&& {
+    background-color: ${(props) => props.theme.palette.common.white};
+    color: ${(props) => props.theme.palette.secondary.main};
+  }
+`;
+
 const Footer = ({ links }) => (
   <>
     <FooterBanner>
@@ -97,7 +104,7 @@ const Footer = ({ links }) => (
               }}
             >
               <Anchor>
-                <Button reversed>Maak ook de stap</Button>
+                <StyledButton>Maak ook de stap</StyledButton>
               </Anchor>
             </Link>
           </Grid>

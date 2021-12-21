@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import HomeIcon from '@mui/icons-material/Home';
 import Link from 'next/link';
@@ -46,19 +45,9 @@ export default function BlogPage({ data }) {
         description="Yak blog"
       />
       <Layout
-        maxWidth="1440px"
-        maxHeight
-        heroImage={(
-          <Image
-            alt="Aanpak"
-            src={aanpak}
-            layout="fill"
-            objectFit="cover"
-            placeholder="blur"
-          />
-    )}
+        heroImage={aanpak}
         heroText={(
-          <HeroTypography variant="h3" color="white">
+          <HeroTypography variant="h3" color="black">
             Blog
           </HeroTypography>
       )}

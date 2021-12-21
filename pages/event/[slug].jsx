@@ -66,20 +66,12 @@ const Event = ({ event }) => {
   return (
     <Layout
       crumbsData={crumbsData}
-      maxHeight
       heroText={(
-        <HeroTypography variant="h3" color="white">
+        <HeroTypography variant="h3" color="black">
           {title}
         </HeroTypography>
       )}
-      heroImage={(
-        <Image
-          alt="Aanpak"
-          src={url}
-          layout="fill"
-          objectFit="cover"
-        />
-)}
+      heroImage={url}
     >
       <Box
         component="div"

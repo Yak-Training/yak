@@ -68,19 +68,11 @@ const Blog = ({ blog }) => {
   return (
     <Layout
       heroText={(
-        <Typography variant="h3" color="white" component="h1">
+        <Typography variant="h3" color="black" component="h1">
           {title}
         </Typography>
     )}
-      maxHeight
-      heroImage={(
-        <Image
-          alt="Aanpak"
-          src={url}
-          layout="fill"
-          objectFit="cover"
-        />
-)}
+      heroImage={url}
       crumbsData={crumbsData}
     >
       <Box

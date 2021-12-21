@@ -23,7 +23,7 @@ export default function TraingsAanbod() {
           />
     )}
         heroText={(
-          <HeroTypography variant="h3" color="white">
+          <HeroTypography variant="h3" color="black">
             Partners
           </HeroTypography>
       )}

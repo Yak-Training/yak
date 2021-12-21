@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Typography from './Typography';
 import CustomizedBreadcrumbs, { StyledBreadcrumb } from './BreadCrumbs';
 import Anchor from './Anchor';
+import links from '../data/links';
 import Hero from './Hero';
 import Navigation from './Navigation';
 
@@ -26,7 +27,6 @@ const StyledTypography = styled(Typography)`
 
 export const HeroTypography = styled(Typography)`
   && {
-    text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
     font-size: 2rem;
     letter-spacing: -1px;
 
@@ -35,7 +35,7 @@ export const HeroTypography = styled(Typography)`
     }
 
     @media (min-width: 1024px) {
-      font-size: 4rem;
+      font-size: 3.2rem;
     }
   }
 `;
@@ -54,107 +54,23 @@ const BreadCrumbsContainer = styled.div`
   margin-bottom: 24px;
 `;
 
-const HeroContainer = styled.div`
-  position: relative;
-  width: 100vw;
-  height: 60vh;
-  background: ${(props) => (props.theme.palette.primary.main)};
-  overflow: hidden;
-
-  img {
-    object-fit: cover;
-    opacity: 0.5;
-  }
-
-  @media(min-width: 1024px) {
-    ${(props) => (props.maxHeight ? `
-      width: 100vw;
-      height: 40vh;`
-    : ` 
-    width: 100vw; 
-    height: 100vh;`
-  )}
-  }
-`;
-
-const HeroText = styled.div`
-  position: absolute;
-  z-index: 15;
-  max-width: 1024px;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-
-  button {
-    margin-top: 24px;
-
-    @media (min-width: 600px) {
-      margin-top: 40px;
-    }
-  }
-`;
-
-const links = [
-  {
-    name: 'Blog',
-    href: '/blog',
-  },
-  {
-    name: 'Onze aanpak',
-    href: '/onze-aanpak',
-  },
-  {
-    name: 'Trainingsaanbod',
-    href: '/trainingsaanbod',
-  },
-  {
-    name: 'Contact',
-    href: '/contact',
-  },
-];
-
 const Layout = ({
-  heroImage,
   children,
   heroText,
-  button,
-  maxHeight,
+  heroImage,
   noPadding,
   maxWidth,
   noBreadCrumbs,
   crumbsData,
+  contactButton,
 }) => (
   <>
-    {maxHeight
-      ? (
-        <>
-          <Navigation
-            links={links.map((link) => {
-              const { name, href } = link;
-              return (
-                <Link href={href} passHref key={href}>
-                  <Anchor>
-                    <StyledTypography color="white" variant="subtitle2">
-                      {name}
-                    </StyledTypography>
-                  </Anchor>
-                </Link>
-              );
-            })}
-          />
-          <HeroContainer maxHeight={maxHeight}>
-            <HeroText>
-              {heroText}
-              {button}
-            </HeroText>
-            {heroImage}
-          </HeroContainer>
-        </>
-      ) : <Hero navLinks={links} heroText="Creating sustainable engagement" />}
+    <Hero
+      contactButton={contactButton}
+      heroImage={heroImage}
+      navigation={<Navigation />}
+      heroText={heroText}
+    />
     <Container noPadding={noPadding} maxWidth={maxWidth}>
       { noBreadCrumbs ? null
         : (
@@ -211,6 +127,7 @@ Layout.propTypes = {
   maxWidth: PropTypes.string,
   noBreadCrumbs: PropTypes.bool,
   crumbsData: PropTypes.arrayOf(PropTypes.shape({})),
+  contactButton: PropTypes.bool,
 };
 
 Layout.defaultProps = {
@@ -223,6 +140,7 @@ Layout.defaultProps = {
   maxWidth: null,
   noBreadCrumbs: false,
   crumbsData: [],
+  contactButton: false,
 };
 
 export default Layout;
