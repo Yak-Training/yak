@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Image from 'next/image';
-import Layout, { HeroTypography } from '../components/Layout';
+import Link from 'next/link';
+import Layout, { HeroTypography, HeroImageContainer } from '../components/Layout';
 import hero from '../public/hero.jpg';
 import Button from '../components/Button';
 import Head from '../components/Head';
 import Diensten from '../components/Diensten';
+import Anchor from '../components/Anchor';
 import Teaser from '../components/Teaser';
 import AboutUs from '../components/AboutUs';
 import client from '../lib/client';
@@ -40,23 +42,40 @@ export async function getStaticProps() {
 export default function Home({ teams, heroText, services }) {
   return (
     <Layout
+      navLinksColor="black"
+      navigationPosition="static"
       noPadding
       heroText={(
-        <HeroTypography variant="h3" color="white">
+        <HeroTypography variant="h3">
           {heroText}
         </HeroTypography>
         )}
-      button={<Button color="secondary" variant="contained">Contact</Button>}
+      button={(
+        <Link
+          href={{
+            pathname: '/contact',
+          }}
+        >
+          <Anchor>
+            <Button color="secondary" variant="contained">
+              Contact
+            </Button>
+          </Anchor>
+        </Link>
+)}
       noBreadCrumbs
       heroImage={(
-        <Image
-          alt="Mountains"
-          src={hero}
-          layout="fill"
-          objectFit="cover"
-          placeholder="blur"
-        />
+        <HeroImageContainer>
+          <Image
+            alt="Mountains"
+            src={hero}
+            layout="fill"
+            objectFit="cover"
+            placeholder="blur"
+          />
+        </HeroImageContainer>
       )}
+      heroHome
     >
       <Head
         title="Yak"

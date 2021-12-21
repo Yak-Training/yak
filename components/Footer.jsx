@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import styled from '@emotion/styled';
 import Grid from '@mui/material/Grid';
 import Button from './Button';
+import Anchor from './Anchor';
 import Typography from './Typography';
 
 const Container = styled.footer`
@@ -89,7 +91,15 @@ const Footer = ({ links }) => (
             </Typography>
           </Grid>
           <Grid lg={4} md={4} sm={12} xs={12} item>
-            <Button reversed>Maak ook de stap</Button>
+            <Link
+              href={{
+                pathname: '/contact',
+              }}
+            >
+              <Anchor>
+                <Button reversed>Maak ook de stap</Button>
+              </Anchor>
+            </Link>
           </Grid>
         </Grid>
       </TextContainer>

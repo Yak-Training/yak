@@ -25,17 +25,33 @@ const StyledTypography = styled(Typography)`
 
 export const HeroTypography = styled(Typography)`
   && {
-    text-shadow: 1px 2px 1px rgba(0,0,0,0.5);
     font-size: 2rem;
     letter-spacing: -1px;
+    margin-bottom: 32px;
 
     @media (min-width: 600px) {
       font-size: 2.5rem;
     }
 
     @media (min-width: 1024px) {
-      font-size: 4rem;
+      font-size: 3.2rem;
     }
+  }
+`;
+
+export const HeroImageContainer = styled.div`
+  width: 100%;
+  position: relative;
+  height: 40vh;
+  overflow: hidden;
+
+  @media (min-width: 840px) {
+    width: 70%;
+    height: 60vh;
+  }
+
+  img {
+    object-fit: cover;
   }
 `;
 
@@ -73,6 +89,27 @@ const HeroContainer = styled.div`
     width: 100vw; 
     height: 100vh;`
   )}
+  }
+`;
+
+const HeroContainerHome = styled.div`
+  display: block;
+
+  @media (min-width: 840px) {
+    display: flex;
+    flex-basis: calc(50%);
+    align-items: center;
+  }
+`;
+
+const HeroHomeText = styled.div`
+  margin: 0 auto 48px;
+  max-width: 80vw;
+  text-align: center;
+
+  @media (min-width: 840px) {
+    margin: 0 24px;
+    text-align: left;
   }
 `;
 
@@ -130,15 +167,19 @@ const Layout = ({
   maxWidth,
   noBreadCrumbs,
   crumbsData,
+  heroHome,
+  navigationPosition,
+  navLinksColor,
 }) => (
   <>
     <Navigation
+      position={navigationPosition}
       links={links.map((link) => {
         const { name, href } = link;
         return (
           <Link href={href} passHref key={href}>
             <Anchor>
-              <StyledTypography color="white" variant="subtitle2">
+              <StyledTypography color={navLinksColor} variant="subtitle2">
                 {name}
               </StyledTypography>
             </Anchor>
@@ -146,13 +187,25 @@ const Layout = ({
         );
       })}
     />
-    <HeroContainer maxHeight={maxHeight}>
-      <HeroText>
-        {heroText}
-        {button}
-      </HeroText>
-      {heroImage}
-    </HeroContainer>
+    {heroHome
+      ? (
+        <HeroContainerHome>
+          <HeroHomeText>
+            {heroText}
+            {button}
+          </HeroHomeText>
+          {heroImage}
+        </HeroContainerHome>
+      )
+      : (
+        <HeroContainer maxHeight={maxHeight}>
+          <HeroText>
+            {heroText}
+            {button}
+          </HeroText>
+          {heroImage}
+        </HeroContainer>
+      )}
     <Container noPadding={noPadding} maxWidth={maxWidth}>
       { noBreadCrumbs ? null
         : (
@@ -209,6 +262,8 @@ Layout.propTypes = {
   maxWidth: PropTypes.string,
   noBreadCrumbs: PropTypes.bool,
   crumbsData: PropTypes.arrayOf(PropTypes.shape({})),
+  navigationPosition: PropTypes.string,
+  navLinksColor: PropTypes.string,
 };
 
 Layout.defaultProps = {
@@ -221,6 +276,8 @@ Layout.defaultProps = {
   maxWidth: null,
   noBreadCrumbs: false,
   crumbsData: [],
+  navigationPosition: 'absolute',
+  navLinksColor: 'white',
 };
 
 export default Layout;
