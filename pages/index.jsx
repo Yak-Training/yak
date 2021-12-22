@@ -13,7 +13,6 @@ import client from '../lib/client';
 import teamQuery from '../lib/queries/teamQuery';
 import heroQuery from '../lib/queries/heroQuery';
 import serviceQuery from '../lib/queries/serviceQuery';
-import Typography from '../components/Typography';
 
 export async function getStaticProps() {
   const { data: { teamsConnection } } = await client.query({

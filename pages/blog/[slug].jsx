@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
 import HomeIcon from '@mui/icons-material/Home';
 import Box from '@mui/material/Box';
 import { Typography } from '@mui/material';

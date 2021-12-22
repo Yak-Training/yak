@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import HomeIcon from '@mui/icons-material/Home';
 import Head from '../components/Head';
 import aanpak from '../public/aanpak.jpg';

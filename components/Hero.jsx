@@ -1,10 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import Image from 'next/image';
 import Anchor from './Anchor';
 import Typography from './Typography';
 import Button from './Button';
+import adventure from '../public/adventure.jpeg';
 
 const StyledButton = styled(Button)`
   &&& {
@@ -13,7 +15,7 @@ const StyledButton = styled(Button)`
 `;
 
 export default function Hero({
-  heroText, navigation, heroImage, contactButton,
+  heroText, heroDescription, navigation, heroImage, contactButton,
 }) {
   return (
     <div className="relative bg-white overflow-hidden">
@@ -23,7 +25,7 @@ export default function Hero({
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
             <div className="sm:text-center lg:text-left">
               <Typography className="mb-6" component="h1" gutterBottom variant="h3">{heroText}</Typography>
-              <Typography className="mb-6" variant="body1" gutterBottom>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam porta est enim, ut convallis eros blandit ac.</Typography>
+              <Typography className="mb-6" variant="body1" gutterBottom>{heroDescription}</Typography>
               {contactButton
               && (
               <Link
@@ -58,3 +60,19 @@ export default function Hero({
     </div>
   );
 }
+
+Hero.propTypes = {
+  heroText: PropTypes.string,
+  heroDescription: PropTypes.string,
+  navigation: PropTypes.node,
+  heroImage: PropTypes.string,
+  contactButton: PropTypes.bool,
+};
+
+Hero.defaultProps = {
+  heroText: null,
+  heroDescription: null,
+  navigation: null,
+  heroImage: adventure,
+  contactButton: false,
+};

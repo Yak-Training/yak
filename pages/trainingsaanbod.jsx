@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
 import Grid from '@mui/material/Grid';
 import Link from 'next/link';
 import HomeIcon from '@mui/icons-material/Home';
