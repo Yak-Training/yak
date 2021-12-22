@@ -66,6 +66,7 @@ const Blog = ({ blog }) => {
 
   return (
     <Layout
+      maxWidth="1536px"
       heroText={(
         <Typography variant="h3" color="black" component="h1">
           {title}

@@ -64,6 +64,7 @@ const Event = ({ event }) => {
 
   return (
     <Layout
+      maxWidth="1536px"
       crumbsData={crumbsData}
       heroText={(
         <HeroTypography variant="h3" color="black">

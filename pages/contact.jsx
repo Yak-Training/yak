@@ -25,6 +25,7 @@ export default function TraingsAanbod() {
         description="Contact Yak"
       />
       <Layout
+        maxWidth="1536px"
         crumbsData={crumbsData}
         heroImage={aanpak}
         heroText={(

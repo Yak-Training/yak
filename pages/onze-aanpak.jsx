@@ -13,12 +13,13 @@ export default function OnzeAanpak() {
     },
     {
       label: 'Contact',
-      href: '/contact',
+      href: '/onze-aanpak',
     },
   ];
 
   return (
     <Layout
+      maxWidth="1536px"
       crumbsData={crumbsData}
       heroImage={aanpak}
       heroText={(

@@ -7,7 +7,7 @@ import Card from './Card';
 
 const MaxWidth = styled.div`
     margin: 0 auto;
-    max-width: 1980px;
+    max-width: 1536px;
     padding: 32px 16px;
 
     @media(min-width: 1024px) {

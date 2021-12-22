@@ -46,7 +46,7 @@ export default function TrainingsAanbod({ data }) {
       />
       <Layout
         crumbsData={crumbsData}
-        maxWidth="1440px"
+        maxWidth="1536px"
         heroImage={aanpak}
         heroText={(
           <HeroTypography variant="h3" color="black">

@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import TeamMember from './List/TeamMember';
 
 const MaxWidth = styled.div`
-  max-width: 1024px;
+  max-width: 1536px;
   margin: 0 auto;
   padding: 32px 16px;
 

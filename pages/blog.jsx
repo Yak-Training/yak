@@ -46,6 +46,7 @@ export default function BlogPage({ data }) {
       />
       <Layout
         heroImage={aanpak}
+        maxWidth="1536px"
         heroText={(
           <HeroTypography variant="h3" color="black">
             Blog
