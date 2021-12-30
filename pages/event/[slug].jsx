@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import Layout, { HeroTypography } from '../../components/Layout';
 import eventQuery from '../../lib/queries/eventQuery';
 import client from '../../lib/client';
+import Typography from '../../components/Typography';
 
 export async function getStaticPaths() {
   const { data } = await client.query({
@@ -44,6 +45,7 @@ const Event = ({ event }) => {
     },
     date,
     slug,
+    location,
   } = event;
 
   const crumbsData = [
@@ -78,9 +80,19 @@ const Event = ({ event }) => {
         sx={{
           maxWidth: '640px',
           margin: '0 auto',
+          overflow: 'hidden',
         }}
       >
-        <p>{date}</p>
+        <Typography variant="subtitle2">
+          Datum:
+          {' '}
+          {date}
+        </Typography>
+        <Typography variant="subtitle2">
+          Locatie:
+          {' '}
+          {location}
+        </Typography>
         <div
           dangerouslySetInnerHTML={{ __html: description }}
         />
@@ -101,6 +113,7 @@ Event.propTypes = {
     author: PropTypes.string,
     date: PropTypes.string,
     slug: PropTypes.string,
+    location: PropTypes.string,
   }),
 };
 
@@ -116,6 +129,7 @@ Event.defaultProps = {
     author: null,
     date: null,
     slug: null,
+    location: null,
   },
 };
 
