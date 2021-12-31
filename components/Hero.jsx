@@ -19,11 +19,9 @@ const StyledTypography = styled(Typography)`
 `;
 
 const TypographyContainer = styled.div`
-  min-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 32px;
 `;
 
 export default function Hero({
@@ -38,7 +36,7 @@ export default function Hero({
             <div className="sm:text-center lg:text-left">
               <TypographyContainer>
                 <StyledTypography tag="h1" variant="h3">{heroText}</StyledTypography>
-                <StyledTypography variant="body1">{heroDescription}</StyledTypography>
+                <StyledTypography tag="p" variant="body1">{heroDescription}</StyledTypography>
                 {contactButton
               && (
               <Link

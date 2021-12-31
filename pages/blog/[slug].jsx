@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import HomeIcon from '@mui/icons-material/Home';
 import Box from '@mui/material/Box';
-import { Typography } from '@mui/material';
-import Layout from '../../components/Layout';
+import Layout, { HeroTypography } from '../../components/Layout';
 import blogQuery from '../../lib/queries/blogQuery';
 import client from '../../lib/client';
 
@@ -68,9 +67,9 @@ const Blog = ({ blog }) => {
     <Layout
       maxWidth="1536px"
       heroText={(
-        <Typography variant="h3" color="black" component="h1">
+        <HeroTypography variant="h3" color="black">
           {title}
-        </Typography>
+        </HeroTypography>
     )}
       heroImage={url}
       crumbsData={crumbsData}
