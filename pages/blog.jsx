@@ -5,27 +5,40 @@ import HomeIcon from '@mui/icons-material/Home';
 import Link from 'next/link';
 import Card from '../components/Card';
 import Head from '../components/Head';
-import aanpak from '../public/aanpak.jpg';
 import Layout, { HeroTypography } from '../components/Layout';
 import blogQuery from '../lib/queries/blogQuery';
+import blogListQuery from '../lib/queries/blogListQuery';
 import client from '../lib/client';
 import Anchor from '../components/Anchor';
 
 export async function getStaticProps() {
-  const { data } = await client.query({
+  const { data: { blogs } } = await client.query({
     query: blogQuery,
   });
 
+  const { data: { blogLists } } = await client.query({
+    query: blogListQuery,
+  });
+
+  const {
+    description: {
+      html: description,
+    },
+    heroImage: {
+      url: heroImage,
+    },
+  } = blogLists[0];
+
   return {
     props: {
-      data,
+      blogs,
+      description,
+      heroImage,
     },
   };
 }
 
-export default function BlogPage({ data }) {
-  const { blogs } = data;
-
+export default function BlogPage({ blogs, heroImage, description }) {
   const crumbsData = [
     {
       label: 'Home',
@@ -45,7 +58,7 @@ export default function BlogPage({ data }) {
         description="Yak blog"
       />
       <Layout
-        heroImage={aanpak}
+        heroImage={heroImage}
         maxWidth="1536px"
         heroText={(
           <HeroTypography variant="h3" color="black">
@@ -61,6 +74,7 @@ export default function BlogPage({ data }) {
           alignItems="stretch"
           spacing={5}
         >
+          <div dangerouslySetInnerHTML={{ __html: description }} />
           {blogs.map((blog) => {
             const {
               title, image: { url }, slug, shortDescription,
@@ -92,27 +106,27 @@ export default function BlogPage({ data }) {
 }
 
 BlogPage.propTypes = {
-  data: PropTypes.shape({
-    blogs: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.string,
-      shortDescription: PropTypes.string,
-      image: PropTypes.shape({
-        url: PropTypes.string,
-      }),
-    })),
-  }),
+  blogs: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    shortDescription: PropTypes.string,
+    image: PropTypes.shape({
+      url: PropTypes.string,
+    }),
+  })),
+  heroImage: PropTypes.string,
+  description: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 BlogPage.defaultProps = {
-  data: {
-    blogs: [
-      {
-        title: null,
-        shortDescription: null,
-        image: {
-          url: null,
-        },
+  blogs: [
+    {
+      title: null,
+      shortDescription: null,
+      image: {
+        url: null,
       },
-    ],
-  },
+    },
+  ],
+  heroImage: null,
+  description: null,
 };

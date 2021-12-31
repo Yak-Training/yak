@@ -8,7 +8,6 @@ import Diensten from '../components/Diensten';
 import Anchor from '../components/Anchor';
 import Teaser from '../components/Teaser';
 import AboutUs from '../components/AboutUs';
-import adventure from '../public/adventure.jpeg';
 import client from '../lib/client';
 import teamQuery from '../lib/queries/teamQuery';
 import heroQuery from '../lib/queries/heroQuery';
@@ -28,22 +27,25 @@ export async function getStaticProps() {
   });
 
   const { edges: teams } = teamsConnection;
-  const { heroText } = heroes[0];
+  const { heroText, image: { url: heroImage } } = heroes[0];
   return {
     props: {
       teams,
       heroText,
       services,
+      heroImage,
     },
   };
 }
 
-export default function Home({ teams, heroText, services }) {
+export default function Home({
+  teams, heroText, services, heroImage,
+}) {
   return (
     <Layout
       noPadding
       contactButton
-      heroImage={adventure}
+      heroImage={heroImage}
       heroText={(
         <HeroTypography variant="h3" color="black">
           {heroText}
@@ -81,10 +83,12 @@ Home.propTypes = {
   teams: PropTypes.arrayOf(PropTypes.shape({})),
   heroText: PropTypes.string,
   services: PropTypes.arrayOf(PropTypes.shape({})),
+  heroImage: PropTypes.string,
 };
 
 Home.defaultProps = {
   teams: [],
   heroText: null,
   services: [],
+  heroImage: null,
 };

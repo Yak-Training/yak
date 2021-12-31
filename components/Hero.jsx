@@ -14,6 +14,18 @@ const StyledButton = styled(Button)`
   }
 `;
 
+const StyledTypography = styled(Typography)`
+  margin-bottom: 24px;
+`;
+
+const TypographyContainer = styled.div`
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 32px;
+`;
+
 export default function Hero({
   heroText, heroDescription, navigation, heroImage, contactButton,
 }) {
@@ -22,11 +34,12 @@ export default function Hero({
       <div className="max-w-3xl">
         <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
           {navigation}
-          <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+          <div className="mt-10 mb-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
             <div className="sm:text-center lg:text-left">
-              <Typography className="mb-6" component="h1" gutterBottom variant="h3">{heroText}</Typography>
-              <Typography className="mb-6" variant="body1" gutterBottom>{heroDescription}</Typography>
-              {contactButton
+              <TypographyContainer>
+                <StyledTypography tag="h1" variant="h3">{heroText}</StyledTypography>
+                <StyledTypography variant="body1">{heroDescription}</StyledTypography>
+                {contactButton
               && (
               <Link
                 href={{
@@ -40,8 +53,9 @@ export default function Hero({
                 </Anchor>
               </Link>
               )}
+              </TypographyContainer>
             </div>
-          </main>
+          </div>
         </div>
       </div>
       {heroImage

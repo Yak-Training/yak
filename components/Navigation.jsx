@@ -72,8 +72,8 @@ const Navigation = () => (
               <Anchor>
                 <span className="sr-only">Yak</span>
                 <Image
-                  width={100}
-                  height={100}
+                  width={125}
+                  height={125}
                   src={logo}
                   alt="Yak"
                 />
